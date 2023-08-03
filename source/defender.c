@@ -4,22 +4,23 @@
  *
  * SPDX-License-Identifier: MIT
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 
 /**
@@ -39,16 +40,17 @@
 /**
  * @brief Get the topic length for a given defender API.
  *
- * @param[in] thingNameLength The length of the thing name as registered with AWS IoT.
+ * @param[in] thingNameLength The length of the thing name as registered with
+ * AWS IoT.
  * @param[in] api The defender API value.
  *
  * @return The topic length for the given defender API.
  */
-static uint16_t getTopicLength( uint16_t thingNameLength,
-                                DefenderTopic_t api );
+static uint16_t getTopicLength( uint16_t thingNameLength, DefenderTopic_t api );
 
 /**
- * @brief Write the format and suffix part for the given defender API to the buffer.
+ * @brief Write the format and suffix part for the given defender API to the
+ * buffer.
  *
  * Format: json or cbor.
  * Suffix: /accepted or /rejected or empty.
@@ -59,8 +61,7 @@ static uint16_t getTopicLength( uint16_t thingNameLength,
  * @note This function assumes that the buffer is large enough to hold the
  * value.
  */
-static void writeFormatAndSuffix( char * pBuffer,
-                                  DefenderTopic_t api );
+static void writeFormatAndSuffix( char * pBuffer, DefenderTopic_t api );
 
 /**
  * @brief Check if the unparsed topic so far starts with the defender prefix.
@@ -90,7 +91,8 @@ static DefenderStatus_t matchPrefix( const char * pRemainingTopic,
  *
  * @param[in] pRemainingTopic Starting location of the unparsed topic.
  * @param[in] remainingTopicLength The length of the unparsed topic.
- * @param[out] pOutThingNameLength The length of the thing name in the topic string.
+ * @param[out] pOutThingNameLength The length of the thing name in the topic
+ * string.
  *
  * @return #DefenderSuccess if a valid thing name is found; #DefenderNoMatch
  * otherwise.
@@ -139,12 +141,12 @@ static DefenderStatus_t matchApi( const char * pRemainingTopic,
                                   DefenderTopic_t * pOutApi );
 /*-----------------------------------------------------------*/
 
-static uint16_t getTopicLength( uint16_t thingNameLength,
-                                DefenderTopic_t api )
+static uint16_t getTopicLength( uint16_t thingNameLength, DefenderTopic_t api )
 {
     uint16_t topicLength = 0U;
 
-    assert( ( thingNameLength != 0U ) && ( thingNameLength <= DEFENDER_THINGNAME_MAX_LENGTH ) );
+    assert( ( thingNameLength != 0U ) &&
+            ( thingNameLength <= DEFENDER_THINGNAME_MAX_LENGTH ) );
     assert( ( api > DefenderInvalidTopic ) && ( api < DefenderMaxTopic ) );
 
     switch( api )
@@ -183,8 +185,7 @@ static uint16_t getTopicLength( uint16_t thingNameLength,
 }
 /*-----------------------------------------------------------*/
 
-static void writeFormatAndSuffix( char * pBuffer,
-                                  DefenderTopic_t api )
+static void writeFormatAndSuffix( char * pBuffer, DefenderTopic_t api )
 {
     /* The following variables are to address MISRA Rule 7.4 violation of
      * passing const char * for const void * param of memcpy. */
@@ -208,7 +209,8 @@ static void writeFormatAndSuffix( char * pBuffer,
             ( void ) memcpy( ( void * ) pBuffer,
                              ( const void * ) pDefenderApiJsonFormat,
                              ( size_t ) DEFENDER_API_LENGTH_JSON_FORMAT );
-            ( void ) memcpy( ( void * ) &( pBuffer[ DEFENDER_API_LENGTH_JSON_FORMAT ] ),
+            ( void ) memcpy( ( void * ) &(
+                                 pBuffer[ DEFENDER_API_LENGTH_JSON_FORMAT ] ),
                              ( const void * ) pDefenderApiAcceptedSuffix,
                              ( size_t ) DEFENDER_API_LENGTH_ACCEPTED_SUFFIX );
             break;
@@ -217,7 +219,8 @@ static void writeFormatAndSuffix( char * pBuffer,
             ( void ) memcpy( ( void * ) pBuffer,
                              ( const void * ) pDefenderApiJsonFormat,
                              DEFENDER_API_LENGTH_JSON_FORMAT );
-            ( void ) memcpy( ( void * ) &( pBuffer[ DEFENDER_API_LENGTH_JSON_FORMAT ] ),
+            ( void ) memcpy( ( void * ) &(
+                                 pBuffer[ DEFENDER_API_LENGTH_JSON_FORMAT ] ),
                              ( const void * ) pDefenderApiRejectedSuffix,
                              ( size_t ) DEFENDER_API_LENGTH_REJECTED_SUFFIX );
             break;
@@ -232,7 +235,8 @@ static void writeFormatAndSuffix( char * pBuffer,
             ( void ) memcpy( ( void * ) pBuffer,
                              ( const void * ) pDefenderApiCborFormat,
                              DEFENDER_API_LENGTH_CBOR_FORMAT );
-            ( void ) memcpy( ( void * ) &( pBuffer[ DEFENDER_API_LENGTH_CBOR_FORMAT ] ),
+            ( void ) memcpy( ( void * ) &(
+                                 pBuffer[ DEFENDER_API_LENGTH_CBOR_FORMAT ] ),
                              ( const void * ) pDefenderApiAcceptedSuffix,
                              ( size_t ) DEFENDER_API_LENGTH_ACCEPTED_SUFFIX );
             break;
@@ -246,7 +250,8 @@ static void writeFormatAndSuffix( char * pBuffer,
             ( void ) memcpy( ( void * ) pBuffer,
                              ( const void * ) pDefenderApiCborFormat,
                              ( size_t ) DEFENDER_API_LENGTH_CBOR_FORMAT );
-            ( void ) memcpy( ( void * ) &( pBuffer[ DEFENDER_API_LENGTH_CBOR_FORMAT ] ),
+            ( void ) memcpy( ( void * ) &(
+                                 pBuffer[ DEFENDER_API_LENGTH_CBOR_FORMAT ] ),
                              ( const void * ) pDefenderApiRejectedSuffix,
                              ( size_t ) DEFENDER_API_LENGTH_REJECTED_SUFFIX );
             break;
@@ -333,18 +338,14 @@ static DefenderStatus_t matchApi( const char * pRemainingTopic,
     DefenderStatus_t ret = DefenderNoMatch;
     uint16_t i = 0U;
     /* Table of defender APIs. */
-    static const DefenderTopic_t defenderApi[] =
-    {
-        DefenderJsonReportPublish,
-        DefenderJsonReportAccepted,
-        DefenderJsonReportRejected,
-        DefenderCborReportPublish,
-        DefenderCborReportAccepted,
-        DefenderCborReportRejected,
+    static const DefenderTopic_t defenderApi[] = {
+        DefenderJsonReportPublish,  DefenderJsonReportAccepted,
+        DefenderJsonReportRejected, DefenderCborReportPublish,
+        DefenderCborReportAccepted, DefenderCborReportRejected,
     };
-    /* Table of topic API strings in the same order as the above defenderApi table. */
-    static const char * const defenderApiTopic[] =
-    {
+    /* Table of topic API strings in the same order as the above defenderApi
+     * table. */
+    static const char * const defenderApiTopic[] = {
         DEFENDER_API_JSON_FORMAT,
         DEFENDER_API_JSON_FORMAT DEFENDER_API_ACCEPTED_SUFFIX,
         DEFENDER_API_JSON_FORMAT DEFENDER_API_REJECTED_SUFFIX,
@@ -352,9 +353,9 @@ static DefenderStatus_t matchApi( const char * pRemainingTopic,
         DEFENDER_API_CBOR_FORMAT DEFENDER_API_ACCEPTED_SUFFIX,
         DEFENDER_API_CBOR_FORMAT DEFENDER_API_REJECTED_SUFFIX,
     };
-    /* Table of topic API string lengths in the same order as the above defenderApi table. */
-    static const uint16_t defenderApiTopicLength[] =
-    {
+    /* Table of topic API string lengths in the same order as the above
+     * defenderApi table. */
+    static const uint16_t defenderApiTopicLength[] = {
         DEFENDER_API_LENGTH_JSON_FORMAT,
         DEFENDER_API_LENGTH_JSON_FORMAT + DEFENDER_API_LENGTH_ACCEPTED_SUFFIX,
         DEFENDER_API_LENGTH_JSON_FORMAT + DEFENDER_API_LENGTH_REJECTED_SUFFIX,
@@ -396,22 +397,23 @@ DefenderStatus_t Defender_GetTopic( char * pBuffer,
     const char * pDefenderApiPrefix = DEFENDER_API_PREFIX;
     const char * pDefenderApiBridge = DEFENDER_API_BRIDGE;
 
-    if( ( pBuffer == NULL ) ||
-        ( pThingName == NULL ) ||
-        ( thingNameLength == 0U ) || ( thingNameLength > DEFENDER_THINGNAME_MAX_LENGTH ) ||
+    if( ( pBuffer == NULL ) || ( pThingName == NULL ) ||
+        ( thingNameLength == 0U ) ||
+        ( thingNameLength > DEFENDER_THINGNAME_MAX_LENGTH ) ||
         ( api <= DefenderInvalidTopic ) || ( api >= DefenderMaxTopic ) ||
         ( pOutLength == NULL ) )
     {
         ret = DefenderBadParameter;
 
-        LogError( ( "Invalid input parameter. pBuffer: %p, bufferLength: %u, "
-                    "pThingName: %p, thingNameLength: %u, api: %d, pOutLength: %p.",
-                    ( const void * ) pBuffer,
-                    ( unsigned int ) bufferLength,
-                    ( const void * ) pThingName,
-                    ( unsigned int ) thingNameLength,
-                    api,
-                    ( void * ) pOutLength ) );
+        LogError(
+            ( "Invalid input parameter. pBuffer: %p, bufferLength: %u, "
+              "pThingName: %p, thingNameLength: %u, api: %d, pOutLength: %p.",
+              ( const void * ) pBuffer,
+              ( unsigned int ) bufferLength,
+              ( const void * ) pThingName,
+              ( unsigned int ) thingNameLength,
+              api,
+              ( void * ) pOutLength ) );
     }
 
     if( ret == DefenderSuccess )
@@ -469,7 +471,8 @@ DefenderStatus_t Defender_MatchTopic( const char * pTopic,
                                       uint16_t * pOutThingNameLength )
 {
     DefenderStatus_t ret = DefenderSuccess;
-    uint16_t remainingTopicLength = 0U, consumedTopicLength = 0U, thingNameLength = 0U;
+    uint16_t remainingTopicLength = 0U, consumedTopicLength = 0U,
+             thingNameLength = 0U;
 
     if( ( pTopic == NULL ) || ( pOutApi == NULL ) )
     {
@@ -495,7 +498,8 @@ DefenderStatus_t Defender_MatchTopic( const char * pTopic,
         }
         else
         {
-            LogDebug( ( "The topic does not contain defender prefix $aws/things/." ) );
+            LogDebug( (
+                "The topic does not contain defender prefix $aws/things/." ) );
         }
     }
 
@@ -528,7 +532,8 @@ DefenderStatus_t Defender_MatchTopic( const char * pTopic,
         }
         else
         {
-            LogDebug( ( "The topic does not contain the defender bridge /defender/metrics/." ) );
+            LogDebug( ( "The topic does not contain the defender bridge "
+                        "/defender/metrics/." ) );
         }
     }
 
@@ -540,8 +545,9 @@ DefenderStatus_t Defender_MatchTopic( const char * pTopic,
 
         if( ret != DefenderSuccess )
         {
-            LogDebug( ( "The topic does not contain valid report format or suffix "
-                        " needed to be a valid defender topic." ) );
+            LogDebug(
+                ( "The topic does not contain valid report format or suffix "
+                  " needed to be a valid defender topic." ) );
         }
     }
 

@@ -4,22 +4,23 @@
  *
  * SPDX-License-Identifier: MIT
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 
 /**
@@ -35,13 +36,13 @@
 
 /* *INDENT-OFF* */
 #ifdef __cplusplus
-    extern "C" {
+extern "C" {
 #endif
 /* *INDENT-ON* */
 
 /* DEFENDER_DO_NOT_USE_CUSTOM_CONFIG allows building the Device Defender library
- * without a config file. If a config file is provided, DEFENDER_DO_NOT_USE_CUSTOM_CONFIG
- * macro must not be defined.
+ * without a config file. If a config file is provided,
+ * DEFENDER_DO_NOT_USE_CUSTOM_CONFIG macro must not be defined.
  */
 #ifndef DEFENDER_DO_NOT_USE_CUSTOM_CONFIG
     #include "defender_config.h"
@@ -56,9 +57,10 @@
  */
 typedef enum
 {
-    DefenderError = 0,     /**< Generic Error. */
-    DefenderSuccess,       /**< Success. */
-    DefenderNoMatch,       /**< The provided topic does not match any defender topic. */
+    DefenderError = 0, /**< Generic Error. */
+    DefenderSuccess,   /**< Success. */
+    DefenderNoMatch, /**< The provided topic does not match any defender topic.
+                      */
     DefenderBadParameter,  /**< Invalid parameters were passed. */
     DefenderBufferTooSmall /**< The output buffer is too small. */
 } DefenderStatus_t;
@@ -71,11 +73,15 @@ typedef enum
 {
     DefenderInvalidTopic = -1,  /**< Invalid topic. */
     DefenderJsonReportPublish,  /**< Topic for publishing a JSON report. */
-    DefenderJsonReportAccepted, /**< Topic for getting a JSON report accepted response. */
-    DefenderJsonReportRejected, /**< Topic for getting a JSON report rejected response. */
+    DefenderJsonReportAccepted, /**< Topic for getting a JSON report accepted
+                                   response. */
+    DefenderJsonReportRejected, /**< Topic for getting a JSON report rejected
+                                   response. */
     DefenderCborReportPublish,  /**< Topic for publishing a CBOR report. */
-    DefenderCborReportAccepted, /**< Topic for getting a CBOR report accepted response. */
-    DefenderCborReportRejected, /**< Topic for getting a CBOR report rejected response. */
+    DefenderCborReportAccepted, /**< Topic for getting a CBOR report accepted
+                                   response. */
+    DefenderCborReportRejected, /**< Topic for getting a CBOR report rejected
+                                   response. */
     DefenderMaxTopic
 } DefenderTopic_t;
 
@@ -84,7 +90,8 @@ typedef enum
 /**
  * @brief Helper macro to calculate the length of a string literal.
  */
-#define STRING_LITERAL_LENGTH( literal )    ( ( uint16_t ) ( sizeof( literal ) - 1U ) )
+#define STRING_LITERAL_LENGTH( literal ) \
+    ( ( uint16_t ) ( sizeof( literal ) - 1U ) )
 
 /*-----------------------------------------------------------*/
 
@@ -92,7 +99,7 @@ typedef enum
  * @ingroup defender_constants
  * @brief Maximum length of a thing's name as permitted by AWS IoT Core.
  */
-#define DEFENDER_THINGNAME_MAX_LENGTH         128U
+#define DEFENDER_THINGNAME_MAX_LENGTH      128U
 
 /**
  * @ingroup defender_constants
@@ -101,7 +108,7 @@ typedef enum
  *
  * This is as per AWS IoT Device Defender Service reference.
  */
-#define DEFENDER_REPORT_MIN_PERIOD_SECONDS    300
+#define DEFENDER_REPORT_MIN_PERIOD_SECONDS 300
 
 /*-----------------------------------------------------------*/
 
@@ -131,26 +138,30 @@ typedef enum
  * Doxygen should ignore these macros as they are private.
  */
 
-#define DEFENDER_API_PREFIX                    "$aws/things/"
-#define DEFENDER_API_LENGTH_PREFIX             STRING_LITERAL_LENGTH( DEFENDER_API_PREFIX )
+#define DEFENDER_API_PREFIX                "$aws/things/"
+#define DEFENDER_API_LENGTH_PREFIX         STRING_LITERAL_LENGTH( DEFENDER_API_PREFIX )
 
-#define DEFENDER_API_BRIDGE                    "/defender/metrics/"
-#define DEFENDER_API_LENGTH_BRIDGE             STRING_LITERAL_LENGTH( DEFENDER_API_BRIDGE )
+#define DEFENDER_API_BRIDGE                "/defender/metrics/"
+#define DEFENDER_API_LENGTH_BRIDGE         STRING_LITERAL_LENGTH( DEFENDER_API_BRIDGE )
 
-#define DEFENDER_API_JSON_FORMAT               "json"
-#define DEFENDER_API_LENGTH_JSON_FORMAT        STRING_LITERAL_LENGTH( DEFENDER_API_JSON_FORMAT )
+#define DEFENDER_API_JSON_FORMAT           "json"
+#define DEFENDER_API_LENGTH_JSON_FORMAT \
+    STRING_LITERAL_LENGTH( DEFENDER_API_JSON_FORMAT )
 
-#define DEFENDER_API_CBOR_FORMAT               "cbor"
-#define DEFENDER_API_LENGTH_CBOR_FORMAT        STRING_LITERAL_LENGTH( DEFENDER_API_CBOR_FORMAT )
+#define DEFENDER_API_CBOR_FORMAT "cbor"
+#define DEFENDER_API_LENGTH_CBOR_FORMAT \
+    STRING_LITERAL_LENGTH( DEFENDER_API_CBOR_FORMAT )
 
-#define DEFENDER_API_ACCEPTED_SUFFIX           "/accepted"
-#define DEFENDER_API_LENGTH_ACCEPTED_SUFFIX    STRING_LITERAL_LENGTH( DEFENDER_API_ACCEPTED_SUFFIX )
+#define DEFENDER_API_ACCEPTED_SUFFIX "/accepted"
+#define DEFENDER_API_LENGTH_ACCEPTED_SUFFIX \
+    STRING_LITERAL_LENGTH( DEFENDER_API_ACCEPTED_SUFFIX )
 
-#define DEFENDER_API_REJECTED_SUFFIX           "/rejected"
-#define DEFENDER_API_LENGTH_REJECTED_SUFFIX    STRING_LITERAL_LENGTH( DEFENDER_API_REJECTED_SUFFIX )
+#define DEFENDER_API_REJECTED_SUFFIX "/rejected"
+#define DEFENDER_API_LENGTH_REJECTED_SUFFIX \
+    STRING_LITERAL_LENGTH( DEFENDER_API_REJECTED_SUFFIX )
 
-#define DEFENDER_API_NULL_SUFFIX               ""
-#define DEFENDER_API_LENGTH_NULL_SUFFIX        ( 0U )
+#define DEFENDER_API_NULL_SUFFIX        ""
+#define DEFENDER_API_LENGTH_NULL_SUFFIX ( 0U )
 
 /** @endcond */
 
@@ -162,19 +173,19 @@ typedef enum
  */
 
 /* Defender API topic lengths. */
-#define DEFENDER_API_COMMON_LENGTH( thingNameLength, reportFormatLength, suffixLength ) \
-    ( DEFENDER_API_LENGTH_PREFIX +                                                      \
-      ( thingNameLength ) +                                                             \
-      DEFENDER_API_LENGTH_BRIDGE +                                                      \
-      ( reportFormatLength ) +                                                          \
-      ( suffixLength ) )
+#define DEFENDER_API_COMMON_LENGTH( thingNameLength,     \
+                                    reportFormatLength,  \
+                                    suffixLength )       \
+    ( DEFENDER_API_LENGTH_PREFIX + ( thingNameLength ) + \
+      DEFENDER_API_LENGTH_BRIDGE + ( reportFormatLength ) + ( suffixLength ) )
 
 /** @endcond */
 
 /**
  * @brief Length of the topic string for publishing a JSON report.
  *
- * @param[in] thingNameLength Length of the thing name as registered with AWS IoT Core.
+ * @param[in] thingNameLength Length of the thing name as registered with AWS
+ * IoT Core.
  */
 #define DEFENDER_API_LENGTH_JSON_PUBLISH( thingNameLength )      \
     DEFENDER_API_COMMON_LENGTH( thingNameLength,                 \
@@ -182,9 +193,11 @@ typedef enum
                                 DEFENDER_API_LENGTH_NULL_SUFFIX )
 
 /**
- * @brief Length of the topic string for getting a JSON report accepted response.
+ * @brief Length of the topic string for getting a JSON report accepted
+ * response.
  *
- * @param[in] thingNameLength Length of the thing name as registered with AWS IoT Core.
+ * @param[in] thingNameLength Length of the thing name as registered with AWS
+ * IoT Core.
  */
 #define DEFENDER_API_LENGTH_JSON_ACCEPTED( thingNameLength )     \
     DEFENDER_API_COMMON_LENGTH( thingNameLength,                 \
@@ -192,9 +205,11 @@ typedef enum
                                 DEFENDER_API_LENGTH_ACCEPTED_SUFFIX )
 
 /**
- * @brief Length of the topic string for getting a JSON report rejected response.
+ * @brief Length of the topic string for getting a JSON report rejected
+ * response.
  *
- * @param[in] thingNameLength Length of the thing name as registered with AWS IoT Core.
+ * @param[in] thingNameLength Length of the thing name as registered with AWS
+ * IoT Core.
  */
 #define DEFENDER_API_LENGTH_JSON_REJECTED( thingNameLength )     \
     DEFENDER_API_COMMON_LENGTH( thingNameLength,                 \
@@ -204,7 +219,8 @@ typedef enum
 /**
  * @brief Length of the topic string for publishing a CBOR report.
  *
- * @param[in] thingNameLength Length of the thing name as registered with AWS IoT Core.
+ * @param[in] thingNameLength Length of the thing name as registered with AWS
+ * IoT Core.
  */
 #define DEFENDER_API_LENGTH_CBOR_PUBLISH( thingNameLength )      \
     DEFENDER_API_COMMON_LENGTH( thingNameLength,                 \
@@ -212,9 +228,11 @@ typedef enum
                                 DEFENDER_API_LENGTH_NULL_SUFFIX )
 
 /**
- * @brief  Length of the topic string for getting a CBOR report accepted response.
+ * @brief  Length of the topic string for getting a CBOR report accepted
+ * response.
  *
- * @param[in] thingNameLength Length of the thing name. as registered with AWS IoT Core.
+ * @param[in] thingNameLength Length of the thing name. as registered with AWS
+ * IoT Core.
  */
 #define DEFENDER_API_LENGTH_CBOR_ACCEPTED( thingNameLength )     \
     DEFENDER_API_COMMON_LENGTH( thingNameLength,                 \
@@ -222,9 +240,11 @@ typedef enum
                                 DEFENDER_API_LENGTH_ACCEPTED_SUFFIX )
 
 /**
- * @brief  Length of the topic string for getting a CBOR report rejected response.
+ * @brief  Length of the topic string for getting a CBOR report rejected
+ * response.
  *
- * @param[in] thingNameLength Length of the thing name as registered with AWS IoT Core.
+ * @param[in] thingNameLength Length of the thing name as registered with AWS
+ * IoT Core.
  */
 #define DEFENDER_API_LENGTH_CBOR_REJECTED( thingNameLength )     \
     DEFENDER_API_COMMON_LENGTH( thingNameLength,                 \
@@ -234,7 +254,8 @@ typedef enum
 /**
  * @brief Maximum length of the topic string for any defender operation.
  *
- * @param[in] thingNameLength Length of the thing name as registered with AWS IoT Core.
+ * @param[in] thingNameLength Length of the thing name as registered with AWS
+ * IoT Core.
  */
 #define DEFENDER_API_MAX_LENGTH( thingNameLength ) \
     DEFENDER_API_LENGTH_CBOR_ACCEPTED( thingNameLength )
@@ -248,11 +269,7 @@ typedef enum
 
 /* Defender API topics. */
 #define DEFENDER_API_COMMON( thingName, reportFormat, suffix ) \
-    ( DEFENDER_API_PREFIX                                      \
-      thingName                                                \
-      DEFENDER_API_BRIDGE                                      \
-      reportFormat                                             \
-      suffix )
+    ( DEFENDER_API_PREFIX thingName DEFENDER_API_BRIDGE reportFormat suffix )
 
 /** @endcond */
 
@@ -348,10 +365,10 @@ typedef enum
  */
 
 /* Keys used in defender report. */
-#if ( defined( DEFENDER_USE_LONG_KEYS ) && ( DEFENDER_USE_LONG_KEYS == 1 ) )
-    #define DEFENDER_REPORT_SELECT_KEY( longKey, shortKey )    longKey
+#if( defined( DEFENDER_USE_LONG_KEYS ) && ( DEFENDER_USE_LONG_KEYS == 1 ) )
+    #define DEFENDER_REPORT_SELECT_KEY( longKey, shortKey ) longKey
 #else
-    #define DEFENDER_REPORT_SELECT_KEY( longKey, shortKey )    shortKey
+    #define DEFENDER_REPORT_SELECT_KEY( longKey, shortKey ) shortKey
 #endif
 
 /** @endcond */
@@ -360,313 +377,355 @@ typedef enum
  * @ingroup defender_constants
  * @brief "header" key in the defender report.
  */
-#define DEFENDER_REPORT_HEADER_KEY                            DEFENDER_REPORT_SELECT_KEY( "header", "hed" )
+#define DEFENDER_REPORT_HEADER_KEY DEFENDER_REPORT_SELECT_KEY( "header", "hed" )
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "header" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_HEADER_KEY                     STRING_LITERAL_LENGTH( DEFENDER_REPORT_HEADER_KEY )
+#define DEFENDER_REPORT_LENGTH_HEADER_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_HEADER_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "metrics" key in the defender report.
  */
-#define DEFENDER_REPORT_METRICS_KEY                           DEFENDER_REPORT_SELECT_KEY( "metrics", "met" )
+#define DEFENDER_REPORT_METRICS_KEY \
+    DEFENDER_REPORT_SELECT_KEY( "metrics", "met" )
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "metrics" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_METRICS_KEY                    STRING_LITERAL_LENGTH( DEFENDER_REPORT_METRICS_KEY )
+#define DEFENDER_REPORT_LENGTH_METRICS_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_METRICS_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "report_id" key in the defender report.
  */
-#define DEFENDER_REPORT_ID_KEY                                DEFENDER_REPORT_SELECT_KEY( "report_id", "rid" )
+#define DEFENDER_REPORT_ID_KEY DEFENDER_REPORT_SELECT_KEY( "report_id", "rid" )
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "report_id" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_ID_KEY                         STRING_LITERAL_LENGTH( DEFENDER_REPORT_ID_KEY )
+#define DEFENDER_REPORT_LENGTH_ID_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_ID_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "version" key in the defender report.
  */
-#define DEFENDER_REPORT_VERSION_KEY                           DEFENDER_REPORT_SELECT_KEY( "version", "v" )
+#define DEFENDER_REPORT_VERSION_KEY DEFENDER_REPORT_SELECT_KEY( "version", "v" )
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "version" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_VERSION_KEY                    STRING_LITERAL_LENGTH( DEFENDER_REPORT_VERSION_KEY )
+#define DEFENDER_REPORT_LENGTH_VERSION_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_VERSION_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "tcp_connections" key in the defender report.
  */
-#define DEFENDER_REPORT_TCP_CONNECTIONS_KEY                   DEFENDER_REPORT_SELECT_KEY( "tcp_connections", "tc" )
+#define DEFENDER_REPORT_TCP_CONNECTIONS_KEY \
+    DEFENDER_REPORT_SELECT_KEY( "tcp_connections", "tc" )
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "tcp_connections" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_TCP_CONNECTIONS_KEY            STRING_LITERAL_LENGTH( DEFENDER_REPORT_TCP_CONNECTIONS_KEY )
+#define DEFENDER_REPORT_LENGTH_TCP_CONNECTIONS_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_TCP_CONNECTIONS_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "established_connections" key in the defender report.
  */
-#define DEFENDER_REPORT_ESTABLISHED_CONNECTIONS_KEY           DEFENDER_REPORT_SELECT_KEY( "established_connections", "ec" )
+#define DEFENDER_REPORT_ESTABLISHED_CONNECTIONS_KEY \
+    DEFENDER_REPORT_SELECT_KEY( "established_connections", "ec" )
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "established_connections" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_ESTABLISHED_CONNECTIONS_KEY    STRING_LITERAL_LENGTH( DEFENDER_REPORT_ESTABLISHED_CONNECTIONS_KEY )
+#define DEFENDER_REPORT_LENGTH_ESTABLISHED_CONNECTIONS_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_ESTABLISHED_CONNECTIONS_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "connections" key in the defender report.
  */
-#define DEFENDER_REPORT_CONNECTIONS_KEY                       DEFENDER_REPORT_SELECT_KEY( "connections", "cs" )
+#define DEFENDER_REPORT_CONNECTIONS_KEY \
+    DEFENDER_REPORT_SELECT_KEY( "connections", "cs" )
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "connections" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_CONNECTIONS_KEY                STRING_LITERAL_LENGTH( DEFENDER_REPORT_CONNECTIONS_KEY )
+#define DEFENDER_REPORT_LENGTH_CONNECTIONS_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_CONNECTIONS_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "remote_addr" key in the defender report.
  */
-#define DEFENDER_REPORT_REMOTE_ADDR_KEY                       DEFENDER_REPORT_SELECT_KEY( "remote_addr", "rad" )
+#define DEFENDER_REPORT_REMOTE_ADDR_KEY \
+    DEFENDER_REPORT_SELECT_KEY( "remote_addr", "rad" )
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "remote_addr" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_REMOTE_ADDR_KEY                STRING_LITERAL_LENGTH( DEFENDER_REPORT_REMOTE_ADDR_KEY )
+#define DEFENDER_REPORT_LENGTH_REMOTE_ADDR_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_REMOTE_ADDR_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "local_port" key in the defender report.
  */
-#define DEFENDER_REPORT_LOCAL_PORT_KEY                        DEFENDER_REPORT_SELECT_KEY( "local_port", "lp" )
+#define DEFENDER_REPORT_LOCAL_PORT_KEY \
+    DEFENDER_REPORT_SELECT_KEY( "local_port", "lp" )
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "local_port" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_LOCAL_PORT_KEY                 STRING_LITERAL_LENGTH( DEFENDER_REPORT_LOCAL_PORT_KEY )
+#define DEFENDER_REPORT_LENGTH_LOCAL_PORT_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_LOCAL_PORT_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "local_interface" key in the defender report.
  */
-#define DEFENDER_REPORT_LOCAL_INTERFACE_KEY                   DEFENDER_REPORT_SELECT_KEY( "local_interface", "li" )
+#define DEFENDER_REPORT_LOCAL_INTERFACE_KEY \
+    DEFENDER_REPORT_SELECT_KEY( "local_interface", "li" )
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "local_interface" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_LOCAL_INTERFACE_KEY            STRING_LITERAL_LENGTH( DEFENDER_REPORT_LOCAL_INTERFACE_KEY )
+#define DEFENDER_REPORT_LENGTH_LOCAL_INTERFACE_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_LOCAL_INTERFACE_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "total" key in the defender report.
  */
-#define DEFENDER_REPORT_TOTAL_KEY                             DEFENDER_REPORT_SELECT_KEY( "total", "t" )
+#define DEFENDER_REPORT_TOTAL_KEY DEFENDER_REPORT_SELECT_KEY( "total", "t" )
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "total" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_TOTAL_KEY                      STRING_LITERAL_LENGTH( DEFENDER_REPORT_TOTAL_KEY )
+#define DEFENDER_REPORT_LENGTH_TOTAL_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_TOTAL_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "listening_tcp_ports" key in the defender report.
  */
-#define DEFENDER_REPORT_TCP_LISTENING_PORTS_KEY               DEFENDER_REPORT_SELECT_KEY( "listening_tcp_ports", "tp" )
+#define DEFENDER_REPORT_TCP_LISTENING_PORTS_KEY \
+    DEFENDER_REPORT_SELECT_KEY( "listening_tcp_ports", "tp" )
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "listening_tcp_ports" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_TCP_LISTENING_PORTS_KEY        STRING_LITERAL_LENGTH( DEFENDER_REPORT_TCP_LISTENING_PORTS_KEY )
+#define DEFENDER_REPORT_LENGTH_TCP_LISTENING_PORTS_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_TCP_LISTENING_PORTS_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "ports" key in the defender report.
  */
-#define DEFENDER_REPORT_PORTS_KEY                             DEFENDER_REPORT_SELECT_KEY( "ports", "pts" )
+#define DEFENDER_REPORT_PORTS_KEY DEFENDER_REPORT_SELECT_KEY( "ports", "pts" )
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "ports" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_PORTS_KEY                      STRING_LITERAL_LENGTH( DEFENDER_REPORT_PORTS_KEY )
+#define DEFENDER_REPORT_LENGTH_PORTS_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_PORTS_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "port" key in the defender report.
  */
-#define DEFENDER_REPORT_PORT_KEY                              DEFENDER_REPORT_SELECT_KEY( "port", "pt" )
+#define DEFENDER_REPORT_PORT_KEY DEFENDER_REPORT_SELECT_KEY( "port", "pt" )
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "port" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_PORT_KEY                       STRING_LITERAL_LENGTH( DEFENDER_REPORT_PORT_KEY )
+#define DEFENDER_REPORT_LENGTH_PORT_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_PORT_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "interface" key in the defender report.
  */
-#define DEFENDER_REPORT_INTERFACE_KEY                         DEFENDER_REPORT_SELECT_KEY( "interface", "if" )
+#define DEFENDER_REPORT_INTERFACE_KEY \
+    DEFENDER_REPORT_SELECT_KEY( "interface", "if" )
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "interface" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_INTERFACE_KEY                  STRING_LITERAL_LENGTH( DEFENDER_REPORT_INTERFACE_KEY )
+#define DEFENDER_REPORT_LENGTH_INTERFACE_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_INTERFACE_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "listening_udp_ports" key in the defender report.
  */
-#define DEFENDER_REPORT_UDP_LISTENING_PORTS_KEY               DEFENDER_REPORT_SELECT_KEY( "listening_udp_ports", "up" )
+#define DEFENDER_REPORT_UDP_LISTENING_PORTS_KEY \
+    DEFENDER_REPORT_SELECT_KEY( "listening_udp_ports", "up" )
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "listening_udp_ports" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_UDP_LISTENING_PORTS_KEY        STRING_LITERAL_LENGTH( DEFENDER_REPORT_UDP_LISTENING_PORTS_KEY )
+#define DEFENDER_REPORT_LENGTH_UDP_LISTENING_PORTS_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_UDP_LISTENING_PORTS_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "network_stats" key in the defender report.
  */
-#define DEFENDER_REPORT_NETWORK_STATS_KEY                     DEFENDER_REPORT_SELECT_KEY( "network_stats", "ns" )
+#define DEFENDER_REPORT_NETWORK_STATS_KEY \
+    DEFENDER_REPORT_SELECT_KEY( "network_stats", "ns" )
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "network_stats" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_NETWORK_STATS_KEY              STRING_LITERAL_LENGTH( DEFENDER_REPORT_NETWORK_STATS_KEY )
+#define DEFENDER_REPORT_LENGTH_NETWORK_STATS_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_NETWORK_STATS_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "bytes_in" key in the defender report.
  */
-#define DEFENDER_REPORT_BYTES_IN_KEY                          DEFENDER_REPORT_SELECT_KEY( "bytes_in", "bi" )
+#define DEFENDER_REPORT_BYTES_IN_KEY \
+    DEFENDER_REPORT_SELECT_KEY( "bytes_in", "bi" )
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "bytes_in" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_BYTES_IN_KEY                   STRING_LITERAL_LENGTH( DEFENDER_REPORT_BYTES_IN_KEY )
+#define DEFENDER_REPORT_LENGTH_BYTES_IN_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_BYTES_IN_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "bytes_out" key in the defender report.
  */
-#define DEFENDER_REPORT_BYTES_OUT_KEY                         DEFENDER_REPORT_SELECT_KEY( "bytes_out", "bo" )
+#define DEFENDER_REPORT_BYTES_OUT_KEY \
+    DEFENDER_REPORT_SELECT_KEY( "bytes_out", "bo" )
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "bytes_out" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_BYTES_OUT_KEY                  STRING_LITERAL_LENGTH( DEFENDER_REPORT_BYTES_OUT_KEY )
+#define DEFENDER_REPORT_LENGTH_BYTES_OUT_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_BYTES_OUT_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "packets_in" key in the defender report.
  */
-#define DEFENDER_REPORT_PKTS_IN_KEY                           DEFENDER_REPORT_SELECT_KEY( "packets_in", "pi" )
+#define DEFENDER_REPORT_PKTS_IN_KEY \
+    DEFENDER_REPORT_SELECT_KEY( "packets_in", "pi" )
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "packets_in" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_PKTS_IN_KEY                    STRING_LITERAL_LENGTH( DEFENDER_REPORT_PKTS_IN_KEY )
+#define DEFENDER_REPORT_LENGTH_PKTS_IN_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_PKTS_IN_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "packets_out" key in the defender report.
  */
-#define DEFENDER_REPORT_PKTS_OUT_KEY                          DEFENDER_REPORT_SELECT_KEY( "packets_out", "po" )
+#define DEFENDER_REPORT_PKTS_OUT_KEY \
+    DEFENDER_REPORT_SELECT_KEY( "packets_out", "po" )
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "packets_out" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_PKS_OUT_KEY                    STRING_LITERAL_LENGTH( DEFENDER_REPORT_LENGTH_PKS_OUT_KEY )
+#define DEFENDER_REPORT_LENGTH_PKS_OUT_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_LENGTH_PKS_OUT_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "custom_metrics" key in the defender report.
  */
-#define DEFENDER_REPORT_CUSTOM_METRICS_KEY                    DEFENDER_REPORT_SELECT_KEY( "custom_metrics", "cmet" )
+#define DEFENDER_REPORT_CUSTOM_METRICS_KEY \
+    DEFENDER_REPORT_SELECT_KEY( "custom_metrics", "cmet" )
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "custom_metrics" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_CUSTOM_METRICS_KEY             STRING_LITERAL_LENGTH( DEFENDER_REPORT_LENGTH_CUSTOM_METRICS_KEY )
+#define DEFENDER_REPORT_LENGTH_CUSTOM_METRICS_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_LENGTH_CUSTOM_METRICS_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "number" key in the defender report.
  */
-#define DEFENDER_REPORT_NUMBER_KEY                            "number"
+#define DEFENDER_REPORT_NUMBER_KEY "number"
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "number" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_NUMBER_KEY                     STRING_LITERAL_LENGTH( DEFENDER_REPORT_LENGTH_NUMBER_KEY )
+#define DEFENDER_REPORT_LENGTH_NUMBER_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_LENGTH_NUMBER_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "number_list" key in the defender report.
  */
-#define DEFENDER_REPORT_NUMBER_LIST_KEY                       "number_list"
+#define DEFENDER_REPORT_NUMBER_LIST_KEY "number_list"
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "number_list" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_NUMBER_LIST_KEY                STRING_LITERAL_LENGTH( DEFENDER_REPORT_LENGTH_NUMBER_LIST_KEY )
+#define DEFENDER_REPORT_LENGTH_NUMBER_LIST_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_LENGTH_NUMBER_LIST_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "string_list" key in the defender report.
  */
-#define DEFENDER_REPORT_STRING_LIST_KEY                       "string_list"
+#define DEFENDER_REPORT_STRING_LIST_KEY "string_list"
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "string_list" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_STRING_LIST_KEY                STRING_LITERAL_LENGTH( DEFENDER_REPORT_LENGTH_STRING_LIST_KEY )
+#define DEFENDER_REPORT_LENGTH_STRING_LIST_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_LENGTH_STRING_LIST_KEY )
 
 /**
  * @ingroup defender_constants
  * @brief "ip_list" key in the defender report.
  */
-#define DEFENDER_REPORT_IP_LIST_KEY                           "ip_list"
+#define DEFENDER_REPORT_IP_LIST_KEY "ip_list"
 
 /**
  * @ingroup defender_constants
  * @brief Length of the "ip_list" key in the defender report.
  */
-#define DEFENDER_REPORT_LENGTH_IP_LIST_KEY                    STRING_LITERAL_LENGTH( DEFENDER_REPORT_LENGTH_IP_LIST_KEY )
+#define DEFENDER_REPORT_LENGTH_IP_LIST_KEY \
+    STRING_LITERAL_LENGTH( DEFENDER_REPORT_LENGTH_IP_LIST_KEY )
 
 /*-----------------------------------------------------------*/
 
@@ -798,7 +857,7 @@ DefenderStatus_t Defender_MatchTopic( const char * pTopic,
 
 /* *INDENT-OFF* */
 #ifdef __cplusplus
-    }
+}
 #endif
 /* *INDENT-ON* */
 
