@@ -1,5 +1,7 @@
 # AWS IoT Device Defender Library
 
+**[API Documentation Pages for current and previous releases of this library can be found here](https://aws.github.io/Device-Defender-for-AWS-IoT-embedded-sdk/)**
+
 The Device Defender library enables you to send device metrics to the
 [AWS IoT Device Defender Service](https://aws.amazon.com/iot-device-defender/).
 This library also supports custom metrics, a feature that helps you monitor
