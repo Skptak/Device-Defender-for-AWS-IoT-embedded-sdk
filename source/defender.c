@@ -70,11 +70,11 @@ static void writeFormatAndSuffix( char * pBuffer,
  * @param[in] pRemainingTopic Starting location of the unparsed topic.
  * @param[in] remainingTopicLength The length of the unparsed topic.
  *
- * @return #DefenderSuccess if the unparsed topic starts with the defender
+ * @return #DefenderSuccess                  if the unparsed topic starts with the defender
  * prefix; #DefenderNoMatch otherwise.
  */
 static DefenderStatus_t matchPrefix( const char * pRemainingTopic,
-                                     uint16_t remainingTopicLength );
+                                                 uint16_t remainingTopicLength );
 
 /**
  * @brief Extract the length of thing name in the unparsed topic so far.
@@ -82,7 +82,7 @@ static DefenderStatus_t matchPrefix( const char * pRemainingTopic,
  * The end of thing name is marked by a forward slash. A zero length thing name
  * is not valid.
  *
- * This function extracts the same thing name from the following topic strings:
+ * This function extracts the same thing nam                e from the following topic strings:
  *   - $aws/things/THING_NAME/defender/metrics/json
  *   - $aws/things/THING_NAME
  * The second topic is not a valid defender topic and the matching will fail
@@ -90,7 +90,7 @@ static DefenderStatus_t matchPrefix( const char * pRemainingTopic,
  *
  * @param[in] pRemainingTopic Starting location of the unparsed topic.
  * @param[in] remainingTopicLength The length of the unparsed topic.
- * @param[out] pOutThingNameLength The length of the thing name in the topic string.
+ * @param[out] pOutThingNameLength The length of the thing n            ame in the topic string.
  *
  * @return #DefenderSuccess if a valid thing name is found; #DefenderNoMatch
  * otherwise.
@@ -150,7 +150,7 @@ static uint16_t getTopicLength( uint16_t thingNameLength,
     switch( api )
     {
         case DefenderJsonReportPublish:
-            topicLength = DEFENDER_API_LENGTH_JSON_PUBLISH( thingNameLength );
+            topicLength =                   DEFENDER_API_LENGTH_JSON_PUBLISH( thingNameLength );
             break;
 
         case DefenderJsonReportAccepted:
@@ -166,7 +166,7 @@ static uint16_t getTopicLength( uint16_t thingNameLength,
             break;
 
         case DefenderCborReportAccepted:
-            topicLength = DEFENDER_API_LENGTH_CBOR_ACCEPTED( thingNameLength );
+            topicLength =                DEFENDER_API_LENGTH_CBOR_ACCEPTED( thingNameLength );
             break;
 
         /* The default is here just to silence compiler warnings in a way which
