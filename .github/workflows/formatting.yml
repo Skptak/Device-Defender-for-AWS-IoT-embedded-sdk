@@ -19,5 +19,5 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - name: Apply Formatting Fix
-      uses: FreeRTOS/CI-CD-Github-Actions/formatting-bot@main
+      uses: archigup/CI-CD-Github-Actions/formatting-bot@remove-echo
       id: check-formatting
