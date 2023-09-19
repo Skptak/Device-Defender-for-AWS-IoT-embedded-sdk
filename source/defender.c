@@ -60,7 +60,7 @@ static uint16_t getTopicLength( uint16_t thingNameLength,
  * value.
  */
 static void writeFormatAndSuffix( char * pBuffer,
-                                                DefenderTopic_t api );
+                                  DefenderTopic_t api );
 
 /**
  * @brief Check if the unparsed topic so far starts with the defender prefix.
