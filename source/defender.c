@@ -74,7 +74,7 @@ static void writeFormatAndSuffix( char * pBuffer,
  * prefix; #DefenderNoMatch otherwise.
  */
 static DefenderStatus_t matchPrefix( const char * pRemainingTopic,
-                                                 uint16_t remainingTopicLength );
+                                     uint16_t remainingTopicLength );
 
 /**
  * @brief Extract the length of thing name in the unparsed topic so far.
@@ -150,7 +150,7 @@ static uint16_t getTopicLength( uint16_t thingNameLength,
     switch( api )
     {
         case DefenderJsonReportPublish:
-            topicLength =                   DEFENDER_API_LENGTH_JSON_PUBLISH( thingNameLength );
+            topicLength = DEFENDER_API_LENGTH_JSON_PUBLISH( thingNameLength );
             break;
 
         case DefenderJsonReportAccepted:
@@ -166,7 +166,7 @@ static uint16_t getTopicLength( uint16_t thingNameLength,
             break;
 
         case DefenderCborReportAccepted:
-            topicLength =                DEFENDER_API_LENGTH_CBOR_ACCEPTED( thingNameLength );
+            topicLength = DEFENDER_API_LENGTH_CBOR_ACCEPTED( thingNameLength );
             break;
 
         /* The default is here just to silence compiler warnings in a way which
